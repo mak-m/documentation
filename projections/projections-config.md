@@ -7,9 +7,11 @@ sinceVersion: 4.0.2
 
 By changing these settings, you can lessen the amount of pressure projections put on an Event Store node or improve projection performance. You can change these settings on a case-by-case basis, and monitor potential improvements.
 
-## Emit options
+> [!NOTE]
+> You can only change the configuration of a stopped projection.
 
-<!-- TODO: Is this clear? -->
+
+## Emit options
 
 These options control how projections write events.
 
@@ -58,41 +60,39 @@ The default for this option is 500.
 
 Checkpoints store how far along a projection is in the streams it is processing from.
 There is a bit of performance overhead with writing a checkpoint, as it does more than simply write an event. So writing them too often can slow projections down.
-However, we recommend you try other methods of improving projections before changing these values, as checkpoints are an important part of running projections.
+
+We recommend you try other methods of improving projections before changing these values, as checkpoints are an important part of running projections.
 
 ### Checkpoint After Ms
 
 This prevents a new checkpoint from being written within a certain time frame from the previous one.
 The aim of this option is to keep a projection from writing too many checkpoints too quickly - something that can happen in a very busy system.
 
-By default, this is set to 0 seconds, which means there is no limit to how quickly checkpoints can be written.
+The default setting is 0 seconds, which means there is no limit to how quickly checkpoints can be written.
 
 ### Checkpoint Handled Threshold
 
 This controls the number of events that a projection can handle before attempting to write a checkpoint.
 An event is only considered handled if it actually passed through the projection's filter. As such, if the projection is set to checkpoint every 4,000 events, but it only reads from the `foo` stream, the projection will only checkpoint every 4,000 `foo` events.
 
-The default for this option is 4,000 events.
+The default setting is 4,000 events.
 
 ### Checkpoint Unhandled Bytes Threshold
 
 This specifies the number of bytes a projection can process before attempting to write a checkpoint.
-Unhandled bytes are the events that are not processed by the projection itself. For example, if the projection only reads from the `foo` stream, but only writes from the `bar` stream comes through, a checkpoint will be written after this number of bytes have been processed. This is to prevent the projection from having to read through a potentially large number of unrelated events again because none of them actually passed its filter.
+Unhandled bytes are the events that are not processed by the projection itself. For example, if the projection only reads from the `foo` stream, but only writes from the `bar` stream comes through, a checkpoint is written after this number of bytes have been processed. This is to prevent the projection from having to read through a potentially large number of unrelated events again because none of them actually passed its filter.
 
-This option defaults to 10mb.
+The default setting is 10mb.
 
 ## Processing options
 
 ### Pending Events Threshold
 
 This determines the number of events that can be pending before the projection is paused.
-Pausing the projection stops the projection from reading, allowing it to finish with the current events that are waiting to be processed. Once the pending queue has drained to half the threshold, the projection will start reading again.
+Pausing the projection stops the projection from reading, allowing it to finish with the current events that are waiting to be processed. Once the pending queue has drained to half the threshold, the projection starts reading again.
 
-The default is 5000.
+The default setting is 5000.
 
-## Setting these config options
+## Setting these configuration options
 
-These options are accesible through the admin UI from the `Config` tab when editing a projection.
-
-> [!NOTE]
-> The config of a projection can only be changed when the projection has been stopped.
+These options are accessible through the admin UI from the _Config_ tab when editing a projection.

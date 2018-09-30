@@ -36,4 +36,4 @@ In the medical example above the doctor could leave the query running to be noti
 There are 2 types of projections in Event Store:
 
 - [Built in (system) projections](~/projections/system-projections.md) written in C#.
-- JavaScript projections which you create via the API or the admin UI.
+- [User-defined JavaScript projections](~/projections/user-defined-projections.md) which you create via the API or the admin UI.
