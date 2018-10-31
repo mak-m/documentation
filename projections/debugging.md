@@ -57,8 +57,6 @@ You create the projection by making a call to the API and providing it with the 
 curl -i -d@stats-counter.json http://localhost:2113/projections/continuous?name=stats-counter%26type=js%26enabled=true%26emit=true%26trackemittedstreams=true -u admin:changeit
 ```
 
-<!-- TODO: Where are these images? -->
-
 ## Debugging your first projection
 
 Once the projection is running, open your browser and enable the developer tools. Once you have the developer tools open, visit your projection URL and you should see a button labelled _Debug_.

@@ -4,22 +4,18 @@ outputFileName: index.html
 
 # User Defined Projections
 
-User defined projections are written in JavaScript (ECMASCRIPT 6).
-
-Example projection:
-
-<!-- TODO: Which does what? Counts number myeventtype in account-1 stream, and the transformBy does something… Map state to something else, setting it to 10 -->
+User defined projections are written in JavaScript. For example, the `my_demo_projection_result` projection below counts the number of `myEventType` events from the `account-1` stream. It then uses the `transformBy` function to change the final state:
 
 ```JavaScript
-options({ //option
+options({
 	resultStreamName: "my_demo_projection_result",
 	$includeLinks: false,
 	reorderEvents: false,
 	processingLag: 0
 })
 
-fromStream('account-1') //selector
-.when({ //filter
+fromStream('account-1')
+.when({
 	$init:function(){
 		return {
 			count: 0
@@ -29,10 +25,10 @@ fromStream('account-1') //selector
 		state.count += 1;
 	}
 })
-.transformBy(function(state){ //transformation
+.transformBy(function(state){
 	state.count = 10;
 })
-.outputState() //transformation
+.outputState()
 ```
 
 ## Projections API
