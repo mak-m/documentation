@@ -5,11 +5,12 @@ sinceVersion: 4.0.2
 
 # Configuring Projections
 
+<!-- TODO: And how do you change them? UI, .NET, HTTP etc -->
+
 By changing these settings, you can lessen the amount of pressure projections put on an Event Store node or improve projection performance. You can change these settings on a case-by-case basis, and monitor potential improvements.
 
 > [!NOTE]
 > You can only change the configuration of a stopped projection.
-
 
 ## Emit options
 
