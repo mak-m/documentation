@@ -10,6 +10,7 @@ Event Store ships with 4 built in projections.
 
 -   By Category (`$by_category`)
 -   By Event Type (`$by_event_type`)
+- By Correlation ID (`$by_correlation_id`)
 -   Stream by Category (`$stream_by_category`)
 -   Streams (`$streams`)
 
@@ -51,6 +52,16 @@ If the body of the projection is last and `-`, for a stream id of `shopping-cart
 The `$by_event_type` (_http://127.0.0.1:2113/projection/$by_event_type_) projection links existing events from streams to a new stream with a stream id in the format `$et-{event-type}`.
 
 You cannot configure this projection.
+
+## By Correlation ID
+
+The `$by_correlation_id` (_http://127.0.0.1:2113/projection/$by_correlation_id_) projection links existing events from projections to a new stream with a stream id in the format `$bc-<correlation id>`.
+
+The projection takes one parameter, a JSON string as a projection source:
+
+```json
+{"correlationIdProperty":"$myCorrelationId"}
+```
 
 ## Stream By Category
 
