@@ -50,5 +50,5 @@ This depends on the following:
 
 It is safe to run a scavenge while Event Store is running and processing events, it is designed to be an online operation.
 
-> [!ARNING]
+> [!WARNING]
 > Scavenging increases the number of reads/writes made to disk, and it is not recommended to run it when your system is under heavy load.
